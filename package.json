@@ -1,0 +1,14 @@
+{
+  "name": "atmosense-ai-root",
+  "version": "1.0.0",
+  "description": "Root workspace for AtmoSense AI",
+  "scripts": {
+    "install:all": "npm install --prefix auracast-node-backend && npm install --prefix auracast-frontend",
+    "dev:backend": "npm run dev --prefix auracast-node-backend",
+    "dev:frontend": "npm run dev --prefix auracast-frontend",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
