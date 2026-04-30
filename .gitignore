@@ -14,6 +14,7 @@ __pycache__/
 venv/
 env/
 .venv/
+*.py
 
 # OS Files
 .DS_Store
@@ -21,3 +22,9 @@ Thumbs.db
 
 # Ignore local temp files
 *.log
+temp_render.html
+workflow\ digram*
+PROJECT_WORKFLOW.md
+
+# Project Reports & Diagrams
+Report/

@@ -19,17 +19,86 @@ Welcome to **AtmoSense AI** (also known as AuraCast)! This is a full-stack AI-dr
 
 The AtmoSense AI system uses a robust client-server architecture built for scalability and ease of deployment.
 
-*   **Frontend Client (React/Vite):** A Single Page Application (SPA) that provides an interactive UI, built with modern React patterns, Tailwind CSS for styling, and Framer Motion for animations. It communicates with the backend via RESTful APIs.
-*   **Backend API Server (Node.js/Express):** Handles heavy business logic, processes environmental data, calculates health impacts using custom prediction algorithms, and aggregates data from multiple 3rd-party weather APIs.
-*   **Database (MongoDB):** A NoSQL database storing prediction logs, user settings, and historical API data.
-*   **External APIs:** Integrates with OpenWeatherMap and WAQI for real-time atmospheric datasets.
+```mermaid
+graph TB
+    subgraph USER["👤 User / Browser"]
+        BROWSER["React Frontend"]
+    end
 
-### Data Flow
-1. **User Input:** User searches for a city or inputs their activity/health profile in the React Frontend.
-2. **API Request:** Frontend calls the Node.js API endpoints (e.g., `/weather`, `/air-quality`, `/get-impact`).
-3. **Data Aggregation:** Node server fetches data from external Weather/AQI APIs or falls back to robust internal mock data if API limits are reached.
-4. **Prediction Engine:** The data runs through our custom Impact Engine to calculate body impact metrics.
-5. **Response & Rendering:** Backend responds with a comprehensive JSON payload, which the frontend renders using beautiful Recharts data visualizations.
+    subgraph FRONTEND["🖥️ Frontend — React + Vite"]
+        APP["App.jsx (Router + Layout)"]
+        HOME["Home.jsx (Weather Dashboard)"]
+        INPUTFORM["InputForm.jsx (Prediction Input)"]
+        PREDICTION["PredictionDashboard.jsx (AI Results)"]
+        AIRQUALITY["AirQuality.jsx (Pollutant Charts)"]
+        API_SERVICE["api.js (Axios HTTP Client)"]
+    end
+
+    subgraph BACKEND["⚙️ Backend — Node.js + Express"]
+        EXPRESS["index.js (Express Server)"]
+        SERVICES["services.js (Weather & AQI Fetcher)"]
+        PREDICT_ENGINE["predictions.js (AI Prediction Engine)"]
+        DB_MODULE["db.js (Mongoose + MongoDB)"]
+    end
+
+    subgraph EXTERNAL["🌐 External APIs"]
+        OPENWEATHER["OpenWeatherMap API"]
+        WAQI["WAQI Air Quality API"]
+    end
+
+    subgraph DATABASE["🗄️ Database"]
+        MONGODB["MongoDB Atlas (Prediction Logs)"]
+    end
+
+    BROWSER --> APP
+    APP --> HOME & INPUTFORM & PREDICTION & AIRQUALITY
+    HOME & INPUTFORM & AIRQUALITY --> API_SERVICE
+    API_SERVICE -->|HTTP GET/POST| EXPRESS
+    EXPRESS --> SERVICES
+    EXPRESS --> PREDICT_ENGINE
+    EXPRESS --> DB_MODULE
+    SERVICES -->|Live API Calls| OPENWEATHER & WAQI
+    SERVICES -.->|Mock Fallback| EXPRESS
+    DB_MODULE --> MONGODB
+    PREDICT_ENGINE -->|Returns Predictions| EXPRESS
+```
+
+---
+
+## 🔄 User Journey & Data Flow
+
+```mermaid
+flowchart TD
+    START(["🌐 User Opens App"]) --> NAV{"Navigation Bar"}
+    
+    NAV -->|"Dashboard"| DASH["📊 Home / Dashboard Page"]
+    NAV -->|"Predict"| PRED_INPUT["🤖 AI Prediction Form"]
+    NAV -->|"Air Quality"| AQI_PAGE["💨 Air Quality Page"]
+
+    %% Dashboard Flow
+    DASH --> SEARCH_CITY["🔍 Search City"]
+    SEARCH_CITY --> PARALLEL_FETCH["Parallel API Calls"]
+    PARALLEL_FETCH --> WEATHER_CARD["🌡️ Weather Status"]
+    PARALLEL_FETCH --> AQI_CARD["💨 AQI Card"]
+
+    %% Prediction Flow
+    PRED_INPUT --> ENTER_CITY["📍 Enter City & Activity"]
+    ENTER_CITY --> SELECT_HEALTH["❤️ Select Health Sensitivity"]
+    SELECT_HEALTH --> SUBMIT["✨ Generate AI Insights"]
+    SUBMIT --> LOADING["⏳ Analyzing Environment..."]
+    LOADING --> RESULTS["📈 Prediction Dashboard"]
+
+    RESULTS --> REC_CARD["🟢🟡🔴 Recommendation Banner"]
+    RESULTS --> HEAT_CARD["🔥 Heat Index + Temp Increase"]
+    RESULTS --> HYDRATE_CARD["💧 Hydration Check (ml/hr)"]
+    RESULTS --> LUNG_CARD["🫁 Lung Recovery Time"]
+
+    style START fill:#10b981,color:#fff
+    style RESULTS fill:#0ea5e9,color:#fff
+    style WEATHER_CARD fill:#f59e0b,color:#fff
+    style AQI_CARD fill:#14b8a6,color:#fff
+    style REC_CARD fill:#ef4444,color:#fff
+```
 
 ---
 
