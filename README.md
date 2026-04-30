@@ -170,4 +170,4 @@ The backend is optimized for **Render**.
 ---
 
 **Enjoy building with AtmoSense AI! 🚀**
-<h1>made by Ansh,Ankit,Aniket</h1>
+<h1>Live project here <p>https://atmo-sense-ai.vercel.app/</p></h1>
