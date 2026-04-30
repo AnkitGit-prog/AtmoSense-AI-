@@ -125,7 +125,7 @@ The project is fully configured for continuous deployment on modern cloud platfo
 
 ### Frontend Deployment (Vercel)
 The frontend is optimized for **Vercel**.
-1. Import the `auracast-frontend` directory into Vercel.
+1. Import the `AtmoSense-AI-frontend` directory into Vercel.
 2. The framework preset should automatically be detected as **Vite**.
 3. **Environment Variables:**
    *   Add `VITE_API_URL` and point it to your deployed backend URL (e.g., `https://atmosense-backend.onrender.com`).
@@ -134,7 +134,7 @@ The frontend is optimized for **Vercel**.
 ### Backend Deployment (Render)
 The backend is optimized for **Render**.
 1. Create a new "Web Service" on Render and connect your GitHub repository.
-2. Select the `auracast-node-backend` folder as the Root Directory.
+2. Select the `AtmoSense-AI-node-backend` folder as the Root Directory.
 3. Build Command: `npm install`
 4. Start Command: `npm start`
 5. **Environment Variables:**
@@ -151,7 +151,7 @@ The backend is optimized for **Render**.
 
 1. Navigate to the backend folder:
    ```bash
-   cd auracast-node-backend
+   cd AtmoSense-AI-node-backend
    npm install
    npm run dev
    ```
@@ -161,7 +161,7 @@ The backend is optimized for **Render**.
 
 1. Open a **new** terminal window and navigate to the frontend folder:
    ```bash
-   cd auracast-frontend
+   cd AtmoSense-AI-frontend
    npm install
    npm run dev
    ```
