@@ -1,4 +1,5 @@
-# AtmoSense AI - Smart Environmental Health Intelligence 🌫️🤖
+# AtmoSense AI - Smart Environmental Health Intelligence 🌫️🤖 
+
 
 Welcome to **AtmoSense AI** (also known as AuraCast)! This is a full-stack AI-driven web application that collects real-time weather and Air Quality data and converts it into personalized health and outdoor activity insights.
 
@@ -168,6 +169,10 @@ The backend is optimized for **Render**.
 *(Your UI is now ready at `http://localhost:5173`)*
 
 ---
+MINI project Medicaps university
+              And
+"Build By Ankit Tiwari,Aniket Soni,Ansh goyal"
 
 **Enjoy building with AtmoSense AI! 🚀**
 <h1>Live project here <p>https://atmo-sense-ai.vercel.app/</p></h1>
+
